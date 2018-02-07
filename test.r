@@ -7,3 +7,4 @@ mytestfunction(x){
 
 # Another smart comment 
 
+# A new comment

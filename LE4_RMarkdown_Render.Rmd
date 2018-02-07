@@ -1,6 +1,6 @@
 ---
 title: "Export Report to Word"
-author: "Patrick Bachmann"
+author: "Nicole Korrodi"
 date: "February 6th,2017"
 output:
   word_document: default

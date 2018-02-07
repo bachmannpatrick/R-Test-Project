@@ -1,0 +1,83 @@
+---
+title: "R - Beyond the Basics"
+output:
+  html_notebook: 
+    toc: true
+    toc_float: true
+    number_sections: true
+  pdf_document: default
+---
+
+# RFM Overview
+1. Measure the recency, frequency and monetary value of the customer
+2. Set a score to rank customers according to their purchase recency, frequency and monetary value.
+3. Calculate the overall RFM Score
+4. Analyze RFM Group differences
+
+The data:
+
+
+
+```{r load_data}
+library(data.table)
+library(lubridate)
+library(Hmisc)
+
+# Load data
+transactions = fread("transactions.csv")
+transactions$TransDate = dmy(transactions$TransDate, tz="UTC")
+
+transactions
+```
+
+# Recency, Frequency and Monetary value
+
+```{r measure rfm values}
+max.Date = max(transactions$TransDate)
+
+# Task 2: new table for rfm
+rfm_value = transactions[, list(
+    recency = as.numeric(max.Date - max(TransDate)), 
+    frequency = .N,
+    monetary = mean(PurchAmount)
+  ), by="Customer"]
+
+rfm_value
+```
+
+# Set a score
+
+```{r set score}
+rfm_score = rfm_value[, list(
+  Customer,
+  recency = as.numeric(cut2(-recency, g=3)),  
+  frequency = as.numeric(cut2(frequency, g=3)),
+  monetary = as.numeric(cut2(frequency, g=3))
+  )]
+
+rfm_score
+```
+
+# Overall RFM Score
+
+```{r overall score}
+rfm_overall_score = rfm_score[, list(
+  RFM = sum(c(recency, frequency, monetary))
+), by="Customer"]
+
+rfm_overall_score
+```
+
+# RFM Groups
+
+```{r rfm groups}
+rfm_groups = rfm_score[, list(
+    recency, 
+    frequency,
+    monetary,
+    overall_rfm = recency + frequency + monetary,
+    RFM = round(mean(c(recency, frequency, monetary)))
+  ), by="Customer"]
+
+rfm_groups
+```

@@ -1,0 +1,44 @@
+---
+title: "R-Beyond the Basics"
+author: "fangxingyu"
+date: "Feb 6th, 2018"
+output:
+  html_notebook:
+    theme: cosmo
+    toc: yes
+    toc_float: yes
+  pdf_document:
+    toc: yes
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Cmd+Shift+Enter*. 
+
+
+
+##Part 1: Import the data
+###Read in the data transactions.csv. ####
+```{r}
+transactions <- fread("data/transactions.csv")
+```
+###Change dates
+```{r}
+transactions[, TransDate:=dmy(TransDate, tz="UTC")]
+```
+###Check the data
+```{r}
+head(transactions)
+str(transactions)
+summary(transactions)
+```
+
+
+##Part 2: Aggregation of variables 
+
+###Save the latest transaction as the object now in your R environment. ####
+
+```{r}
+max.Date <- max(transactions[, TransDate])
+```
+

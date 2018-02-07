@@ -1,0 +1,80 @@
+---
+title: "R Course Day2"
+author: "R. Rosenast"
+date: "06.02.2018"
+output: 
+  html_notebook:
+    toc: true
+    toc_float: true
+    number_sections: true
+---
+
+Notebooks are a combinatoin of Literate programming, dynamic document and reproducible research.
+* Can be used to showcase the project. Its understandable and can execute parts of code.
+* Integration of other languages, e.g. SQL and Python.
+* REPL -> Read Evaluate Print Loop
+* 
+
+# R Markdown Header 1: MARKDOWN
+## R Markdown Header 2: Different Markdown
+
+* **BOLD**
+* *italics*
+* ~~scratched Text~~
+* superscript ^2
+* [a link](www.google.com)
+* inline R Code: 6 minus 4 = `r 6-4` (back-tick + r + code + back-tick)
+
+## Code Chunks
+plots and tables:
+```{r}
+plot(cars)
+```
+
+echo=FALSE
+```{r, echo=FALSE, warnings=FALSE}
+plot(cars)
+```
+
+
+```{python}
+print("cars")
+```
+
+## Latex
+*easy to include LaTeX documentation in your report
+Inline Latex
+$A= \pi*r^2$
+
+Block Equation
+$$\sqrt{100}=10$$
+
+# Shiny app
+* Shiny is a platform for creating interactive R programs embedded into a webpage.
+* Shiny is made by the folks at Rstudio.
+
+## Traps
+possible traps that might lead to wrong decisions:
+
+1. Importance trap (Focus on relevant metrics!)
+2. Context trap (Context implies on what to focus, e.g. absolute or relative figures.)
+3. Causality trap (Is a relationship based on correlation or causation?)
+
+## Setup
+```{r, echo=FALSE}
+# 1. Download and install the R package shiny
+install.packages('shiny')
+library('shiny')
+
+# creating the user interface (HTML page)
+ui <- fluidPage()
+
+# running the app
+server <- function(input, output){}
+shinyApp(ui = ui, server = server)
+```
+
+
+
+
+

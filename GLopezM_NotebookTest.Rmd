@@ -1,0 +1,60 @@
+---
+title: "R Notebook"
+author: "Gabriela Lopez Magana"
+
+output:
+  html_notebook:
+  toc: true
+  number_sections: true
+---
+
+Exercise 12 R Markdown
+
+```{r}
+1+1
+```
+**bold** and __bold__
+
+*italics* and _italics_
+
+~~scratched text~~
+
+Superscript^2^
+
+[link](www.google.com)
+
+> This is a quote
+
+\*not italics\*
+
+a footnote[^1]
+
+[^1]:place your footnote here
+
+# Header 1
+
+## Header 2
+
+### Header 3
+
+#### Header 4
+
+##### Header 5
+
+## 1. Chapter
+## 2. Chapter
+## 3. Chapter
+## 4. Chapter
+
+---
+# Introduction
+## A
+## B
+
+# Main Part
+## C
+## D
+
+# Conclusion
+## E
+## F
